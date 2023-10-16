@@ -1,0 +1,25 @@
+<p>component2 works!</p>
+<ul>
+    <li *ngFor="let i of arr1">{{i}}</li>
+</ul>
+<!-- <ul>
+    <li>{{obj1['Name']}}</li>
+</ul> -->
+<label for="">Select Student : </label>
+<select>
+    <option *ngFor="let j of obj1" value="{{j['Roll No']}}">{{j["Name"]}}</option>
+</select><br/><br/>
+<label for="">Select Type : </label>
+<select  [(ngModel)]="selectedValue">
+    <option value="none">None</option>
+    <option value="txtBox">TextBox</option>
+    <option value="txtArea">TextArea</option>
+</select><br /><br />
+<div *ngIf="selectedValue === 'none'"></div>
+<div *ngIf="selectedValue === 'txtBox'">
+    <input type="text" value="This is TextBox">
+</div>
+<div *ngIf="selectedValue === 'txtArea'">
+    <textarea cols="20" rows="3">This is TextArea</textarea>
+</div>
+
