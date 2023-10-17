@@ -1,6 +1,88 @@
 <p>component3 works!</p>
-
-<form action="" [formGroup]="userForm">
-    <label>User Name : </label>
-    <input type="text" name="uname" id="uname" formControlName="name">
-</form>
+<div>
+  <div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <label>User Name : </label>
+      <input type="text" name="uname" id="uname" formControlName="name" />
+      <br /><br />
+      <label>User Email : </label>
+      <input type="email" name="uemail" id="uemail" formControlName="email" />
+      <br /><br />
+      <label>Password : </label>
+      <input type="password" name="pwd" id="pwd" formControlName="password" />
+      <br /><br />
+      <label>User BOD : </label>
+      <input type="date" name="bod" id="bod" formControlName="bod" />
+      <br /><br />
+      <label>Gender : </label>
+      <input
+        type="radio"
+        name="gender"
+        id="male"
+        formControlName="gender"
+        value="male"
+      />
+      <label for="male">Male</label>
+      <input
+        type="radio"
+        name="gender"
+        id="female"
+        formControlName="gender"
+        value="female"
+      />
+      <label for="female">Female</label> <br /><br />
+      <div formGroupName="hobbies">
+        <label for="">Hobby : </label>
+        <input
+          type="checkbox"
+          id="sports"
+          name="sports"
+          formControlName="sports"
+        /><label for="sports">Sports</label>
+        <input
+          type="checkbox"
+          id="reading"
+          name="reading"
+          formControlName="reading"
+        /><label for="reading">Reading</label>
+        <input
+          type="checkbox"
+          id="writing"
+          name="writing"
+          formControlName="writing"
+        /><label for="writing">Writing</label>
+      </div>
+      <br /><br />
+      <input
+        type="file"
+        name="profile"
+        id="profile"
+        formControlName="profile"
+      />
+      <br /><br />
+      <input type="submit" value="submit" [disabled]="userForm.invalid" />
+    </form>
+  </div>
+  <div>
+    <div *ngIf="isSubmitted === true">
+      Name : &nbsp; {{ userForm.value.name }} <br />
+      Email : &nbsp; {{ userForm.value.email }} <br />
+      Password : &nbsp; {{ userForm.value.password }} <br />
+      DOB : &nbsp; {{ userForm.value.bod }} <br />
+      Gender : &nbsp; {{ userForm.value.gender }} <br />
+      Hobbies :
+      <ul>
+        <li *ngIf="userForm.value.hobbies.sports">
+          <span >Sports </span>
+        </li>
+        <li *ngIf="userForm.value.hobbies.reading">
+          <span>Reading </span>
+        </li>
+        <li *ngIf="userForm.value.hobbies.writing">
+          <span>Writing</span>
+        </li>
+      </ul>
+      Profile: {{userForm.value.profile}}
+    </div>
+  </div>
+</div>
